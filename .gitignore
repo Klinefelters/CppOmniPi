@@ -30,3 +30,49 @@
 *.exe
 *.out
 *.app
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+venv/
+env/
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Python cache
+__pycache__/
+
+# Environment variables
+.env
+
+# Ignore development and local configuration
+*.env
+*.cfg
+
+# Ignore all files in the 'static' directory
+/static/
+
+# Ignore all files in the 'media' directory
+/media/
+
+# Ignore pipenv or virtualenv directories
+Pipfile
+Pipfile.lock
+
+# macOS system files to be ignored
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+Thumbs.db
+ehthumbs.db
