@@ -11,7 +11,7 @@ hands = mp_hands.Hands()
 cap = cv2.VideoCapture(0)
 
 # Define the deadzone threshold for the distance
-deadzone_threshold = 30.0  # Adjust as needed
+deadzone_threshold = 50.0  # Adjust as needed
 
 while True:
     ret, frame = cap.read()
