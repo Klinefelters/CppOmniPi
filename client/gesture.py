@@ -39,6 +39,9 @@ while True:
 
             # Calculate distance between thumb and pointer finger tips
             distance = math.sqrt((thumb_x - index_x) ** 2 + (thumb_y - index_y) ** 2)
+            
+            delta_x = thumb_x - index_x
+            delta_y = thumb_y - index_y
 
             # Calculate angle
             angle = math.degrees(math.atan2(index_y - thumb_y, index_x - thumb_x))
@@ -54,6 +57,12 @@ while True:
             label_y = thumb_y - 20
             label = "Right Hand" if idx == 0 else "Left Hand"  # Flipped labels
             cv2.putText(frame, label, (label_x, label_y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            
+            # Label the x and y values
+            label_x = index_x + 20
+            label_y = index_y - 20
+            label = f"X: {-delta_x/300:.2f} | Y: {delta_y/300:.2f}"
+            cv2.putText(frame, label, (label_x, label_y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 
             # If the distance is above the deadzone threshold, draw a line
             if distance > deadzone_threshold:
@@ -62,9 +71,6 @@ while True:
 
                 # Draw a line connecting thumb and pointer finger tips
                 cv2.line(frame, (thumb_x, thumb_y), (index_x, index_y), color, 2)
-
-            # Print distance and angle
-            print(f"{label}: Distance: {distance:.2f} pixels, Angle: {angle:.2f} degrees")
 
     # Display the frame with landmarks
     cv2.imshow("Hand Joystick", frame)
