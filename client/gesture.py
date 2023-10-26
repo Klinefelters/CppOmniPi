@@ -43,9 +43,6 @@ while True:
             delta_x = thumb_x - index_x
             delta_y = thumb_y - index_y
 
-            # Calculate angle
-            angle = math.degrees(math.atan2(index_y - thumb_y, index_x - thumb_x))
-
             # Draw red circle around thumb tip
             cv2.circle(frame, (thumb_x, thumb_y), 10, (0, 0, 255), -1)  # Red color
 
@@ -61,8 +58,8 @@ while True:
             # Label the x and y values
             label_x = index_x + 20
             label_y = index_y - 20
-            label = f"X: {-delta_x/300:.2f} | Y: {delta_y/300:.2f}"
-            cv2.putText(frame, label, (label_x, label_y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            label = f"X: {-delta_x/150:.2f} | Y: {delta_y/150:.2f}"
+            cv2.putText(frame, label, (label_x, label_y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
 
             # If the distance is above the deadzone threshold, draw a line
             if distance > deadzone_threshold:
