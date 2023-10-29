@@ -31,8 +31,6 @@ class Server():
             # Process the received data
             print(f"Received data from {client_address}: {data.decode('utf-8')}")
 
-            # You can add your own processing logic here
-
 
         # Close the socket when you're done (This won't be reached in this example)
         self.socket.close()
