@@ -1,10 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Blueprint, jsonify, request
 from robot import Robot
 
-app = Flask(__name__)
-robot = Robot()  # Assuming you have a Robot class with a move method.
+events_bp = Blueprint('events', __name__)
 
-@app.route('/control', methods=['POST'])
+robot = Robot()
+
+@events_bp.route('/control', methods=['POST'])
 def control_robot():
     data = request.get_json()
     x = data.get('x', 0)
@@ -13,5 +14,3 @@ def control_robot():
     robot.move(x, y, r)
     return jsonify({"message": "Robot moved successfully"})
 
-if __name__ == '__main__':
-    app.run()

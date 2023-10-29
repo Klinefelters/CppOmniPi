@@ -3,3 +3,5 @@ pygame
 opencv-python
 Pillow
 tk
+
+flask-cors
