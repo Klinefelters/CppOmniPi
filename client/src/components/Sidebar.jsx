@@ -30,6 +30,18 @@ export default function Sidebar() {
           Video
         </NavLink>
       </ListItem>
+      <ListItem>
+        <NavLink to="touch">
+          <ListIcon as={ViewIcon} color="brand.300" />
+          Touch
+        </NavLink>
+      </ListItem>
+      <ListItem>
+        <NavLink to="keyboard">
+          <ListIcon as={ViewIcon} color="brand.300" />
+          Keyboard
+        </NavLink>
+      </ListItem>
     </List>
   )
 }

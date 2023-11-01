@@ -11,6 +11,8 @@ import Dashboard from './pages/Dashboard'
 import Controller from './pages/Controller'
 import Video from './pages/Video'
 import Voice from './pages/Voice'
+import Touch from './pages/Touch'
+import Keyboard from './pages/Keyboard'
 
 // router and routes
 const router = createBrowserRouter(
@@ -20,6 +22,8 @@ const router = createBrowserRouter(
       <Route path="controller" element={<Controller />}/>
       <Route path="video" element={<Video />}/>
       <Route path="voice" element={<Voice />}/>
+      <Route path="touch" element={<Touch />}/>
+      <Route path="keyboard" element={<Keyboard />}/>
     </Route>
   )
 )
