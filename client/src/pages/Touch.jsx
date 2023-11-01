@@ -38,13 +38,16 @@ export default function Touch() {
 
 
   return (
-    <div>
+    <>
+      <Spacer h="15px"/>
+      
       <Flex>
         <Spacer />
         <Simulator vx={vx} vy={vy} vr={vr} max_speed={10} />
         <Spacer />
       </Flex>
-      
+    
+      <Spacer h="10px" />
 
       <Flex>
         <Spacer />
@@ -53,6 +56,6 @@ export default function Touch() {
         <Joystick move={handleRightMove} stop={handleRightStop}/>
         <Spacer />
       </Flex>
-    </div>
+    </>
   );
 }

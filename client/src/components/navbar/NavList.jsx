@@ -1,6 +1,6 @@
 import { List, ListItem, ListIcon } from "@chakra-ui/react"
 import { NavLink } from "react-router-dom"
-import { EditIcon, LinkIcon, ChatIcon, ViewIcon, DragHandleIcon, HamburgerIcon, SettingsIcon } from "@chakra-ui/icons"
+import { EditIcon, LinkIcon, ChatIcon, ViewIcon, DragHandleIcon, HamburgerIcon } from "@chakra-ui/icons"
 
 export default function NavList(){
     return(
@@ -39,12 +39,6 @@ export default function NavList(){
                 <NavLink to="keyboard">
                   <ListIcon as={HamburgerIcon} color="brand.300" />
                   Keyboard
-                </NavLink>
-              </ListItem>
-              <ListItem>
-                <NavLink to="settings">
-                  <ListIcon as={SettingsIcon} color="brand.300" />
-                  Settings
                 </NavLink>
               </ListItem>
             </List>

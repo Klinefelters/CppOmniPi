@@ -42,13 +42,14 @@ export default function Keyboard() {
 
 
   return (
-    <div>
+    <>
+      <Spacer h="15px"/>
       <Flex>
         <Spacer />
         <Simulator vx={vx} vy={vy} vr={vr} max_speed={10} />
         <Spacer />
       </Flex>
       
-    </div>
+    </>
   );
 }

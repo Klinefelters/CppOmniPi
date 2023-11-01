@@ -13,7 +13,6 @@ import Video from './pages/Video'
 import Voice from './pages/Voice'
 import Touch from './pages/Touch'
 import Keyboard from './pages/Keyboard'
-import Settings from './pages/Settings'
 
 // router and routes
 const router = createBrowserRouter(
@@ -25,7 +24,6 @@ const router = createBrowserRouter(
       <Route path="voice" element={<Voice />}/>
       <Route path="touch" element={<Touch />}/>
       <Route path="keyboard" element={<Keyboard />}/>
-      <Route path="settings" element={<Settings />}/>
     </Route>
   )
 )
