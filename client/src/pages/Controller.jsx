@@ -48,9 +48,9 @@ export default function Controller() {
 
       <Flex>
         <Spacer />
-        <Joystick move = {handleLeftMove} stop = {handleLeftStop}/>
+        <Joystick move={handleLeftMove} stop={handleLeftStop}/>
         <Spacer />
-        <Joystick move = {handleRightMove} stop = {handleRightStop}/>
+        <Joystick move={handleRightMove} stop={handleRightStop}/>
         <Spacer />
       </Flex>
     </div>
