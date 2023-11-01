@@ -29,8 +29,8 @@ export default function Simulator({ vx, vy, vr, max_speed }) {
   }, []);  // Empty dependency array ensures this effect runs only once after component mounts.
 
   function AvatarMove(vx, vy, vr, max_speed) {
-    //console.log('vx:', vx, '| vy:', vy, '| vr:', vr);
-    //console.log('ix:', xPos, '| iy:', yPos, '| iheading:', heading);
+    console.log('vx:', vx, '| vy:', vy, '| vr:', vr);
+    console.log('ix:', xPos, '| iy:', yPos, '| iheading:', heading);
     const rNew = heading + vr * 5;
   
     const cosR = Math.cos(rNew * Math.PI / 180);
@@ -46,19 +46,8 @@ export default function Simulator({ vx, vy, vr, max_speed }) {
     setHeading(rNew);
     setXPos(newXPos);
     setYPos(newYPos);
-    console.log('Avatar Move: x:', newXPos, '| y:', newYPos, '| heading:', rNew);
+  //  console.log('Avatar Move: x:', newXPos, '| y:', newYPos, '| heading:', rNew);
   } 
-
-  useEffect(() => {
-    function handleAvatarMove() {
-        AvatarMove(vx, vy, vr, max_speed);
-    }
-
-    const interval = setInterval(handleAvatarMove, 50);
-
-    return () => clearInterval(interval);
-  }, []);
-
   const avatarStyles = {
     position: "relative",
     left: `${xPos}px`,
