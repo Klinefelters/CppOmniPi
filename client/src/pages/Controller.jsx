@@ -41,7 +41,7 @@ export default function Controller() {
     <div>
       <Flex>
         <Spacer />
-        <Simulator vx={vx} vy={vy} vr={vr} max_speed={100} />
+        <Simulator vx={vx} vy={vy} vr={vr} max_speed={10} />
         <Spacer />
       </Flex>
       

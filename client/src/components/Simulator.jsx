@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { Box, Avatar } from "@chakra-ui/react";
 
 export default function Simulator({ vx, vy, vr, max_speed }) {
-  const [xPos, setXPos] = useState(295);
-  const [yPos, setYPos] = useState(215);
+  const [xPos, setXPos] = useState(0);
+  const [yPos, setYPos] = useState(0);
   const [heading, setHeading] = useState(0);
 
   const vxRef = useRef(vx);
@@ -29,25 +29,31 @@ export default function Simulator({ vx, vy, vr, max_speed }) {
   }, []);  // Empty dependency array ensures this effect runs only once after component mounts.
 
   function AvatarMove(vx, vy, vr, max_speed) {
-    console.log('vx:', vx, '| vy:', vy, '| vr:', vr);
-    console.log('ix:', xPos, '| iy:', yPos, '| iheading:', heading);
-    const rNew = heading + vr * 5;
-  
-    const cosR = Math.cos(rNew * Math.PI / 180);
-    const sinR = Math.sin(rNew * Math.PI / 180);
-  
-    const xNew = xPos + max_speed * (vx * cosR + -vy * sinR);
-    const yNew = yPos + max_speed * (-vy * cosR + vx * sinR);
-  
-    // Ensure xNew and yNew are within valid bounds
-    const newXPos = Math.min(Math.max(xNew, 0), 590);
-    const newYPos = Math.min(Math.max(yNew, 0), 430);
-  
-    setHeading(rNew);
-    setXPos(newXPos);
-    setYPos(newYPos);
-    console.log('Avatar Move: x:', xPos, '| y:', yPos, '| heading:', heading);
+    console.log("Initial: x: ", xPos, "| y:", yPos, "| r:", heading)
+    setHeading(prevHeading => {
+        const rNew = prevHeading + vr * 5;
+        return rNew;
+    });
+
+    setXPos(prevXPos => {
+        const cosR = Math.cos(heading * Math.PI / 180);
+        const sinR = Math.sin(heading * Math.PI / 180);
+        const xNew = prevXPos + max_speed * (vx * cosR + -vy * sinR);
+        // Ensure xNew is within valid bounds
+        return Math.min(Math.max(xNew, 0), 590);
+    });
+
+    setYPos(prevYPos => {
+        const cosR = Math.cos(heading * Math.PI / 180);
+        const sinR = Math.sin(heading * Math.PI / 180);
+        const yNew = prevYPos + max_speed * (-vy * cosR + vx * sinR);
+        // Ensure yNew is within valid bounds
+        return Math.min(Math.max(yNew, 0), 430);
+    });
+
+    console.log("Ending: x: ", xPos, "| y:", yPos, "| r:", heading)
   } 
+
   const avatarStyles = {
     position: "relative",
     left: `${xPos}px`,
