@@ -4,7 +4,7 @@ import CustomCard from "../components/CustomCard"
 export default function Dashboard() {
 
   return (
-    <SimpleGrid spacing={10} minChildWidth={300} w ="100hv">
+    <SimpleGrid spacing={10} p="10" minChildWidth={400} w ="100hv" bg="brand.600">
         <CustomCard name="Controller" img="/img/Sim.png" link="controller"/>
         <CustomCard name="Voice" img="/img/Sim.png" link="voice"/>
         <CustomCard name="Video" img="/img/Sim.png" link="video"/>

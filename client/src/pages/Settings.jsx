@@ -1,4 +1,4 @@
-export default function Video() {
+export default function Settings() {
   
     return (
       <>

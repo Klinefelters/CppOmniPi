@@ -5,19 +5,17 @@ import { NavLink } from "react-router-dom"
 export default function CustomCard({name, img, link}) {
     return (
         <Card>
-            <CardHeader>
+            <CardHeader bg="black">
                 <Flex>
-                    <Heading>{name}</Heading>
-                    <Spacer />
-                    <IconButton aria-label='Settings' icon={<SettingsIcon/>} />
+                    <Heading color="white">{name}</Heading>
                 </Flex>     
             </CardHeader>
 
-            <CardBody>
+            <CardBody bg="brand.grey">
                 <Image src={img} alt="Image" />
             </CardBody>
 
-            <CardFooter>
+            <CardFooter bg="brand.grey">
                 <NavLink to={link}>
                     <Button colorScheme="blue">Visit</Button>
                 </NavLink>

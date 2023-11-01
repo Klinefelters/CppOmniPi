@@ -9,7 +9,8 @@ const colors = {
   brand: {
     900: '#0A2240',
     600: '#004B98',
-    300: '#3DB5E6'
+    300: '#3DB5E6',
+    grey: "#C8C8C8",
   },
 }
 const fonts = {
