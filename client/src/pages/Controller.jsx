@@ -41,16 +41,16 @@ export default function Controller() {
     <div>
       <Flex>
         <Spacer />
-        <Simulator vx={vx} vy={vy} vr={vr} max_speed={10} />
+        <Simulator vx={vx} vy={vy} vr={vr} max_speed={100} />
         <Spacer />
       </Flex>
       
 
       <Flex>
         <Spacer />
-        <Joystick minDistance= {50} move = {handleLeftMove} stop = {handleLeftStop} throttle={50}/>
+        <Joystick move = {handleLeftMove} stop = {handleLeftStop}/>
         <Spacer />
-        <Joystick minDistance= {50} move = {handleRightMove} stop = {handleRightStop}/>
+        <Joystick move = {handleRightMove} stop = {handleRightStop}/>
         <Spacer />
       </Flex>
     </div>

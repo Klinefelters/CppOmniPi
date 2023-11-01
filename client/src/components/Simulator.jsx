@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { Box, Avatar } from "@chakra-ui/react";
 
 export default function Simulator({ vx, vy, vr, max_speed }) {
-  const [xPos, setXPos] = useState(0);
-  const [yPos, setYPos] = useState(0);
+  const [xPos, setXPos] = useState(295);
+  const [yPos, setYPos] = useState(215);
   const [heading, setHeading] = useState(0);
 
   const vxRef = useRef(vx);
@@ -46,7 +46,7 @@ export default function Simulator({ vx, vy, vr, max_speed }) {
     setHeading(rNew);
     setXPos(newXPos);
     setYPos(newYPos);
-  //  console.log('Avatar Move: x:', newXPos, '| y:', newYPos, '| heading:', rNew);
+    console.log('Avatar Move: x:', xPos, '| y:', yPos, '| heading:', heading);
   } 
   const avatarStyles = {
     position: "relative",
