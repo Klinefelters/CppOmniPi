@@ -1,40 +1,76 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Box, Avatar } from "@chakra-ui/react";
 
-export default function Simulator(vx, vy, vr, max_speed) {
-  const [x_pos, setXPos] = useState(0);
-  const [y_pos, setYPos] = useState(0);
+export default function Simulator({ vx, vy, vr, max_speed }) {
+  const [xPos, setXPos] = useState(0);
+  const [yPos, setYPos] = useState(0);
   const [heading, setHeading] = useState(0);
 
-  function AvatarMove(vx, vy, vr, max_speed) {
-    
-    r_new = heading + vr
-    
-    x_new = x_pos + (vx * Math.cos(r_new) + vy * Math.sin(r_new))* max_speed
-    y_new = y_pos + (vy * Math.cos(r_new) + vx * Math.sin(r_new))* max_speed
-
-  }
+  const vxRef = useRef(vx);
+  const vyRef = useRef(vy);
+  const vrRef = useRef(vr);
+  const maxSpeedRef = useRef(max_speed);
 
   useEffect(() => {
-    const interval = setInterval(() => {AvatarMove(vx, vy, vr, max_speed)}, 50);
+    // Update the refs whenever the state values change
+    vxRef.current = vx;
+    vyRef.current = vy;
+    vrRef.current = vr;
+    maxSpeedRef.current = max_speed;
+  }, [vx, vy, vr, max_speed]);
 
-    return () => {
-      clearInterval(interval);
-    };
+  useEffect(() => {
+    const interval = setInterval(() => {
+        // Use the latest values from the refs in the interval
+        AvatarMove(vxRef.current, vyRef.current, vrRef.current, maxSpeedRef.current);
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, []);  // Empty dependency array ensures this effect runs only once after component mounts.
+
+  function AvatarMove(vx, vy, vr, max_speed) {
+    //console.log('vx:', vx, '| vy:', vy, '| vr:', vr);
+    //console.log('ix:', xPos, '| iy:', yPos, '| iheading:', heading);
+    const rNew = heading + vr * 5;
+  
+    const cosR = Math.cos(rNew * Math.PI / 180);
+    const sinR = Math.sin(rNew * Math.PI / 180);
+  
+    const xNew = xPos + max_speed * (vx * cosR + -vy * sinR);
+    const yNew = yPos + max_speed * (-vy * cosR + vx * sinR);
+  
+    // Ensure xNew and yNew are within valid bounds
+    const newXPos = Math.min(Math.max(xNew, 0), 590);
+    const newYPos = Math.min(Math.max(yNew, 0), 430);
+  
+    setHeading(rNew);
+    setXPos(newXPos);
+    setYPos(newYPos);
+    console.log('Avatar Move: x:', newXPos, '| y:', newYPos, '| heading:', rNew);
+  } 
+
+  useEffect(() => {
+    function handleAvatarMove() {
+        AvatarMove(vx, vy, vr, max_speed);
+    }
+
+    const interval = setInterval(handleAvatarMove, 50);
+
+    return () => clearInterval(interval);
   }, []);
 
-
-  const avatar_styles = {
+  const avatarStyles = {
     position: "relative",
-    left: `${x_pos}px`,
-    top: `${y_pos}px`,
+    left: `${xPos}px`,
+    top: `${yPos}px`,
     transform: `rotate(${heading}deg)`
   }
 
-
-  return <div id="simulator">
-    <Box w="480" h="640" bg = "black" >
-      <Avatar name = 'OmniPi' style={avatar_styles}  />
-    </Box>
-  </div>;
+  return (
+    <div id="simulator">
+      <Box w="640px" h="480px" bg="black">
+        <Avatar name='Omni Pi' style={avatarStyles} />
+      </Box>
+    </div>
+  );
 }
