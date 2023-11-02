@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import  { useEffect } from 'react';
 import axios from 'axios';
-import { Box } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 
-export default function OmniPi() {
+export default function OmniPi(vx, vy, vr) {
+
   const videoUrl = 'http://localhost:8000/video_feed';
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
-  const [r, setR] = useState(0);
 
-  const handleControlClick = () => {
+  const sendData = () => {
     const data = {
-      x: x,
-      y: y,
-      r: r
+      x: 0,
+      y: 0,
+      r: 0
     };
 
     axios.post('http://localhost:8000/control', data)
@@ -24,22 +22,20 @@ export default function OmniPi() {
       });
   };
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      sendData();
+    }, 1000);
+
+    // Clear the interval when the component unmounts
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [vx, vy, vr]);
+
   return (
     <Box bg="white">
-      <img id="videoFeed" src={videoUrl} alt="video_feed" width="480" height="320" />
-      <div>
-        <label>X:</label>
-        <input type="number" value={x} onChange={e => setX(e.target.value)} />
-      </div>
-      <div>
-        <label>Y:</label>
-        <input type="number" value={y} onChange={e => setY(e.target.value)} />
-      </div>
-      <div>
-        <label>R:</label>
-        <input type="number" value={r} onChange={e => setR(e.target.value)} />
-      </div>
-      <button onClick={handleControlClick}>Control Robot</button>
+      <Image id="videoFeed" src={videoUrl} alt="video_feed" width="480" height="320" />
     </Box>
   );
 }
