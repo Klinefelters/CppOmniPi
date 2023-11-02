@@ -1,9 +1,10 @@
 from flask import Blueprint, jsonify, request
-from robot import Robot
+from mockRobot import Robot
 
 events_bp = Blueprint('events', __name__)
 
 robot = Robot()
+
 
 @events_bp.route('/control', methods=['POST'])
 def control_robot():
@@ -13,4 +14,3 @@ def control_robot():
     r = data.get('r', 0)
     robot.move(x, y, r)
     return jsonify({"message": "Robot moved successfully"})
-
