@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react"
+import { Box, Flex, Spacer } from "@chakra-ui/react"
 import OmniPi from "../components/OmniPi"
 import { useState } from "react";
 
@@ -10,7 +10,11 @@ export default function Video() {
   
   return (
     <Box bg="black" h="100vh">
-      <OmniPi vx={vx} vy={vy} vr={vr}/>
+      <Flex>
+        <Spacer />
+        <OmniPi vx={vx} vy={vy} vr={vr}/>
+        <Spacer />
+      </Flex>
     </Box>
   )
 }

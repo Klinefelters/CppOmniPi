@@ -34,7 +34,7 @@ export default function OmniPi(vx, vy, vr) {
   }, [vx, vy, vr]);
 
   return (
-    <Box bg="white">
+    <Box bg="black" p={4}>
       <Image id="videoFeed" src={videoUrl} alt="video_feed" width="480" height="320" />
     </Box>
   );
