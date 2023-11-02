@@ -3,32 +3,30 @@ import axios from 'axios';
 import { Box } from '@chakra-ui/react';
 
 export default function OmniPi() {
+  const videoUrl = 'http://localhost:8000/video_feed';
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [r, setR] = useState(0);
 
   const handleControlClick = () => {
-    // Create a data object with the x, y, and r values
     const data = {
       x: x,
       y: y,
       r: r
     };
 
-    // Make a POST request to the Flask server's /control endpoint
-    axios.post('http://localhost:8000/control', { x: 0, y: 0, r: 0})
+    axios.post('http://localhost:8000/control', data)
       .then(response => {
-        console.log(response.data); // Log the response from the server
-        // Handle the response as needed
+        console.log(response.data); 
       })
       .catch(error => {
-        console.error(error); // Log any errors
-        // Handle the error as needed
+        console.error(error); 
       });
   };
 
   return (
     <Box bg="white">
+      <img id="videoFeed" src={videoUrl} alt="video_feed" width="480" height="320" />
       <div>
         <label>X:</label>
         <input type="number" value={x} onChange={e => setX(e.target.value)} />
