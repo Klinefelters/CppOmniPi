@@ -10,7 +10,9 @@ const colors = {
     900: '#0A2240',
     600: '#004B98',
     300: '#3DB5E6',
-    grey: "#C8C8C8",
+    grey: '#C8C8C8',
+    green: '#61BF1A',
+    red: '#E1261C',
   },
 }
 const fonts = {
