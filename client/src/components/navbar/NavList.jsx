@@ -4,7 +4,7 @@ import { EditIcon, LinkIcon, ChatIcon, ViewIcon, DragHandleIcon, HamburgerIcon }
 
 export default function NavList(){
     return(
-        <List color="brand.600" fontSize="1.2em" spacing={4}>
+        <List color="brand.300" fontSize="1.2em" spacing={4}>
               <ListItem>
                 <NavLink to="/">
                   <ListIcon as={EditIcon} color="brand.300" />

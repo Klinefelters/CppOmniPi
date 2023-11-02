@@ -28,9 +28,9 @@ export default function Sidebar() {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg="brand.900">
           <DrawerCloseButton />
-          <DrawerHeader>Navigation</DrawerHeader>
+          <DrawerHeader color="brand.300">Navigation</DrawerHeader>
 
           <DrawerBody>
             <NavList />
