@@ -18,7 +18,7 @@ export default function Sidebar() {
   const btnRef = React.useRef()
   return (
     <>
-      <IconButton ref={btnRef} colorScheme='blue' onClick={onOpen} icon={<HamburgerIcon/>}>
+      <IconButton ref={btnRef} colorScheme='blue' size="lg" onClick={onOpen} icon={<HamburgerIcon/>}>
         
       </IconButton>
       <Drawer

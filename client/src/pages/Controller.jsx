@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Joystick } from 'react-joystick-component';
 import Simulator from '../components/Simulator';
-import { Flex, Spacer } from '@chakra-ui/react';
+import { Box, Flex, Spacer } from '@chakra-ui/react';
 
 export default function Controller() {
 
@@ -31,7 +30,7 @@ export default function Controller() {
 
 
   return (
-    <>
+    <Box bg="black" h="100vh">
       <Spacer h="15px"/>
       
       <Flex>
@@ -39,6 +38,6 @@ export default function Controller() {
         <Simulator vx={leftJoystickPosition.x} vy={-leftJoystickPosition.y} vr={rightJoystickPosition.x} />
         <Spacer />
       </Flex>
-    </>
+    </Box>
   );
 }

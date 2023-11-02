@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Joystick } from 'react-joystick-component';
 import Simulator from '../components/Simulator';
-import { Flex, Spacer } from '@chakra-ui/react'
+import { Box, Flex, Spacer } from '@chakra-ui/react'
 
 export default function Touch() {
 
@@ -38,7 +38,7 @@ export default function Touch() {
 
 
   return (
-    <>
+    <Box bg="black" h="100vh">
       <Spacer h="15px"/>
       
       <Flex>
@@ -56,6 +56,6 @@ export default function Touch() {
         <Joystick move={handleRightMove} stop={handleRightStop}/>
         <Spacer />
       </Flex>
-    </>
+    </Box>
   );
 }

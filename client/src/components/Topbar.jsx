@@ -8,9 +8,9 @@ export default function Topbar() {
   return (
     <Flex as="nav" p="10px" bg = "brand.900">
       <NavLink to="/">
-        <IconButton aria-label='Dashboard' colorScheme='brand.600' icon={<FaHome />} />
+        <IconButton size="lg" aria-label='Dashboard' colorScheme='blue' icon={<FaHome />} />
       </NavLink>
-      <Heading as="h1" fontSize="1.5em" p="10px" color="white">OmniPi</Heading>
+      <Heading as="h1" fontSize="2em" p="10px" color="white">OmniPi</Heading>
       <Spacer />
       <Navbar />
     </Flex>

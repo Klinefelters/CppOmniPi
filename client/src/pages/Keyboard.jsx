@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Simulator from '../components/Simulator';
-import { Flex, Spacer } from '@chakra-ui/react'
+import { Box, Flex, Spacer } from '@chakra-ui/react'
 
 export default function Keyboard() {
 
@@ -42,7 +42,7 @@ export default function Keyboard() {
 
 
   return (
-    <>
+    <Box bg="black" h="100vh">
       <Spacer h="15px"/>
       <Flex>
         <Spacer />
@@ -50,6 +50,6 @@ export default function Keyboard() {
         <Spacer />
       </Flex>
       
-    </>
+    </Box>
   );
 }

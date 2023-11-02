@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, Avatar, Heading, Flex, Divider, Switch } from "@chakra-ui/react";
+import { Box, Avatar, Heading, Flex, Switch, Spacer } from "@chakra-ui/react";
 import Settings from "./simulator/Settings"
 
 export default function Simulator({ vx, vy, vr}) {
@@ -97,21 +97,21 @@ export default function Simulator({ vx, vy, vr}) {
   }
 
   return (
-    <Box id="simulator" bg="brand.900">
-      <Flex>
-        <Heading color="white" h="15" textAlign={"center"} >Simulator</Heading>
-        <Divider />
+    <Box id="simulator" bg="brand.900" p={4} borderRadius='lg'>
+      <Flex p={2} alignItems='center'>
+        <Heading color="white" size='xl' textAlign={"center"} >Simulator</Heading>
+        <Spacer />
         <Settings numbers={settings} onNumberChange={handleSettingsChange} />
       </Flex>
       
-      <Box w="640px" h="480px" bg="black">
+      <Box w="640px" h="480px" bg="black" borderRadius='lg'>
         <Avatar name='Omni Pi' style={avatarStyles} />
       </Box>
 
-      <Box>
-        <Switch size="lg" onChange={toggleSwitch} isChecked={isChecked} />
-        <p>Switch is {isChecked ? 'on' : 'off'}</p>
-      </Box>
+      <Flex p={2} alignItems='center' >
+        <Switch size="lg" onChange={toggleSwitch} isChecked={isChecked} pr={6} />
+        <Heading color="white" size='lg' textAlign={"center"} >Field Oriented</Heading>
+      </Flex>
     </Box>
   );
 }
