@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Box, Avatar, Heading, Flex, Divider } from "@chakra-ui/react";
+import { Box, Avatar, Heading, Flex, Divider, Switch } from "@chakra-ui/react";
 import Settings from "./simulator/Settings"
 
 export default function Simulator({ vx, vy, vr}) {
   const initialsettings = {
     MaxSpeed: 15,
     MaxRotationalSpeed: 15,
+  };
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const toggleSwitch = () => {
+    setIsChecked(!isChecked);
   };
 
   const [settings, setsettings] = useState(initialsettings);
@@ -25,7 +31,11 @@ export default function Simulator({ vx, vy, vr}) {
 
     const updateAvatar = () => {
       if (vx !== 0 || vy !== 0 || vr !== 0) {
-        AvatarMove(vx, vy, vr);
+        if (isChecked){
+          FieldMove(vx, vy, vr);
+        }else{
+          AvatarMove(vx, vy, vr);
+        }
         animationFrame = requestAnimationFrame(updateAvatar);
       } else {
         cancelAnimationFrame(animationFrame);
@@ -60,6 +70,25 @@ export default function Simulator({ vx, vy, vr}) {
     });
   } 
 
+  function FieldMove(vx, vy, vr) {
+    setHeading(prevHeading => {
+        const rNew = prevHeading + vr * settings["MaxRotationalSpeed"];
+        return rNew;
+    });
+
+    setXPos(prevXPos => {
+        const xNew = prevXPos + settings["MaxSpeed"] * vx;
+        // Ensure xNew is within valid bounds
+        return Math.min(Math.max(xNew, 0), 590);
+    });
+
+    setYPos(prevYPos => {
+        const yNew = prevYPos + settings["MaxSpeed"] * -1 * vy ;
+        // Ensure yNew is within valid bounds
+        return Math.min(Math.max(yNew, 0), 430);
+    });
+  } 
+
   const avatarStyles = {
     position: "relative",
     left: `${xPos}px`,
@@ -77,6 +106,11 @@ export default function Simulator({ vx, vy, vr}) {
       
       <Box w="640px" h="480px" bg="black">
         <Avatar name='Omni Pi' style={avatarStyles} />
+      </Box>
+
+      <Box>
+        <Switch size="lg" onChange={toggleSwitch} isChecked={isChecked} />
+        <p>Switch is {isChecked ? 'on' : 'off'}</p>
       </Box>
     </Box>
   );
