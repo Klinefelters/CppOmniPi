@@ -20,5 +20,5 @@ def control_robot():
 
 @events_bp.route('/video_feed')
 def video_feed():
-    return Response(camera.gen(),
+    return Response(camera.gen_frames(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')

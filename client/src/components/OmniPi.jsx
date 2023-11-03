@@ -25,7 +25,7 @@ export default function OmniPi(vx, vy, vr) {
   useEffect(() => {
     const intervalId = setInterval(() => {
       sendData();
-    }, 1000);
+    }, 50);
 
     // Clear the interval when the component unmounts
     return () => {
