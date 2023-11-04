@@ -1,6 +1,7 @@
 import { Box, Flex, Spacer } from "@chakra-ui/react"
 import OmniPi from "../components/OmniPi"
 import { useState } from "react";
+import HandSegmentation from "../components/HandSegmentation";
 
 export default function Video() {
 
@@ -12,7 +13,7 @@ export default function Video() {
     <Box bg="black" h="100vh">
       <Flex>
         <Spacer />
-        <OmniPi vx={vx} vy={vy} vr={vr}/>
+          <HandSegmentation />
         <Spacer />
       </Flex>
     </Box>
