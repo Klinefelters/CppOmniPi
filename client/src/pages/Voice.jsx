@@ -8,7 +8,8 @@ export default function Voice() {
   const [vx, setVX] = useState(0);
   const [vy, setVY] = useState(0);
   const [vr, setVR] = useState(0);
-  const [buttonName, setbuttonName] = useState("Start Listening");
+  const [buttonName, setButtonName] = useState("Start Listening");
+  const [buttonColor, setButtonColor] = useState("green");
   const { listen, listening, stop } = useSpeechRecognition({
     onResult: (result) => {
       const command = result.toLowerCase();
@@ -35,10 +36,12 @@ export default function Voice() {
   function handleButton () {
     if (listening){
       stop()
-      setbuttonName("Start Listening")
+      setButtonName("Start Listening")
+      setButtonColor("green")
     }else{
       listen()
-      setbuttonName("Stop Listening")
+      setButtonName("Stop Listening")
+      setButtonColor("red")
     }
   }
 
@@ -52,7 +55,7 @@ export default function Voice() {
       </Flex>
       <Spacer h="15px" />
       <Flex justifyContent="center">
-        <Button onClick={handleButton} disabled={listening}>
+        <Button onClick={handleButton} colorScheme={buttonColor} disabled={listening}>
           {buttonName}
         </Button>
       </Flex>
