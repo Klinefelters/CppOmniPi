@@ -1,4 +1,4 @@
-import { Box, Flex, Spacer, Button } from '@chakra-ui/react'
+import { Box, Flex, Spacer, Button, Text } from '@chakra-ui/react'
 import Simulator from '../components/Simulator';
 import { useState } from 'react';
 import { useSpeechRecognition  } from 'react-speech-kit';
@@ -9,10 +9,12 @@ export default function Voice() {
   const [vy, setVY] = useState(0);
   const [vr, setVR] = useState(0);
   const [buttonName, setButtonName] = useState("Start Listening");
+  const [displayedText, setDisplayedText] = useState("");
   const [buttonColor, setButtonColor] = useState("green");
   const { listen, listening, stop } = useSpeechRecognition({
     onResult: (result) => {
       const command = result.toLowerCase();
+      setDisplayedText(command);
       if (command.includes('forward')) {
         setVX(1);
       } else if (command.includes('back')) {
@@ -35,13 +37,13 @@ export default function Voice() {
 
   function handleButton () {
     if (listening){
-      stop()
-      setButtonName("Start Listening")
-      setButtonColor("green")
+      stop();
+      setButtonName("Start Listening");
+      setButtonColor("green");
     }else{
-      listen()
-      setButtonName("Stop Listening")
-      setButtonColor("red")
+      listen();
+      setButtonName("Stop Listening");
+      setButtonColor("red");
     }
   }
 
@@ -58,6 +60,11 @@ export default function Voice() {
         <Button onClick={handleButton} colorScheme={buttonColor} disabled={listening}>
           {buttonName}
         </Button>
+      </Flex>
+      <Flex justifyContent="center">
+        <Text >
+          Heard: {displayedText}
+        </Text>
       </Flex>
     </Box>
   );
