@@ -1,6 +1,6 @@
-import { Box, Flex, Spacer } from '@chakra-ui/react'
+import { Box, Flex, Spacer, Button } from '@chakra-ui/react'
 import Simulator from '../components/Simulator';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSpeechRecognition  } from 'react-speech-kit';
 
 export default function Voice() {
@@ -8,6 +8,7 @@ export default function Voice() {
   const [vx, setVX] = useState(0);
   const [vy, setVY] = useState(0);
   const [vr, setVR] = useState(0);
+  const [buttonName, setbuttonName] = useState("Start Listening");
   const { listen, listening, stop } = useSpeechRecognition({
     onResult: (result) => {
       const command = result.toLowerCase();
@@ -31,6 +32,16 @@ export default function Voice() {
     },
   });
 
+  function handleButton () {
+    if (listening){
+      stop()
+      setbuttonName("Start Listening")
+    }else{
+      listen()
+      setbuttonName("Stop Listening")
+    }
+  }
+
   return (
     <Box bg="black" h="100vh">
       <Spacer h="15px" />
@@ -41,12 +52,9 @@ export default function Voice() {
       </Flex>
       <Spacer h="15px" />
       <Flex justifyContent="center">
-        <button onClick={listen} disabled={listening}>
-          Start Listening
-        </button>
-        <button onClick={stop} disabled={!listening}>
-          Stop Listening
-        </button>
+        <Button onClick={handleButton} disabled={listening}>
+          {buttonName}
+        </Button>
       </Flex>
     </Box>
   );
