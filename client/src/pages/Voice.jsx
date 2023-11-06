@@ -14,19 +14,20 @@ export default function Voice() {
   const { listen, listening, stop } = useSpeechRecognition({
     onResult: (result) => {
       const command = result.toLowerCase();
+      console.log("onResulty")
       setDisplayedText(command);
       if (command.includes('forward')) {
         setVX(1);
       } else if (command.includes('back')) {
         setVX(-1);
-      } else if (command.includes('right')) {
-        setVY(1);
-      } else if (command.includes('left')) {
-        setVY(-1);
       } else if (command.includes('turn right')) {
         setVR(1);
       } else if (command.includes('turn left')) {
         setVR(-1);
+      } else if (command.includes('right')) {
+        setVY(1);
+      } else if (command.includes('left')) {
+        setVY(-1);
       } else if (command.includes('stop')) {
         setVX(0);
         setVY(0);
