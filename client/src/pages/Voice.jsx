@@ -14,7 +14,7 @@ export default function Voice() {
   const { listen, listening, stop } = useSpeechRecognition({
     onResult: (result) => {
       const command = result.toLowerCase();
-      console.log("onResulty")
+      console.log("onResult")
       setDisplayedText(command);
       if (command.includes('forward')) {
         setVX(1);
