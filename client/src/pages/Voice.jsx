@@ -1,50 +1,79 @@
-import { Box, Flex, Spacer, Button, Text } from '@chakra-ui/react'
+import { Box, Flex, Spacer, Button, Text } from '@chakra-ui/react';
 import Simulator from '../components/Simulator';
-import { useState } from 'react';
-import { useSpeechRecognition  } from 'react-speech-kit';
+import { useState, useEffect } from 'react';
+import annyang from 'annyang';
 
 export default function Voice() {
-  
   const [vx, setVX] = useState(0);
   const [vy, setVY] = useState(0);
   const [vr, setVR] = useState(0);
   const [buttonName, setButtonName] = useState("Start Listening");
   const [displayedText, setDisplayedText] = useState("");
-  const [buttonColor, setButtonColor] = useState("green");
-  const { listen, listening, stop } = useSpeechRecognition({
-    onResult: (result) => {
-      const command = result.toLowerCase();
-      console.log("onResult")
-      setDisplayedText(command);
-      if (command.includes('forward')) {
-        setVX(1);
-      } else if (command.includes('back')) {
-        setVX(-1);
-      } else if (command.includes('turn right')) {
-        setVR(1);
-      } else if (command.includes('turn left')) {
-        setVR(-1);
-      } else if (command.includes('right')) {
-        setVY(1);
-      } else if (command.includes('left')) {
-        setVY(-1);
-      } else if (command.includes('stop')) {
-        setVX(0);
-        setVY(0);
-        setVR(0);
-      }
-    },
-  });
 
-  function handleButton () {
-    if (listening){
-      stop();
+  useEffect(() => {
+    const commands = ['turn left', 'turn right', 'forward', 'backward', 'left', 'right', 'stop'];
+  
+    const executeCommand = (command) => {
+      switch (command) {
+        case 'turn right':
+          setVR((vr) => Math.min(Math.max(vr + 1, -1), 1));
+          break;
+        case 'turn left':
+          setVR((vr) => Math.min(Math.max(vr - 1, -1), 1));
+          break;
+        case 'forward':
+          setVY((vy) => Math.min(Math.max(vy + 1, -1), 1));
+          break;
+        case 'backward':
+          setVY((vy) => Math.min(Math.max(vy - 1, -1), 1));
+          break;
+        case 'right':
+          setVX((vx) => Math.min(Math.max(vx + 1, -1), 1));
+          break;
+        case 'left':
+          setVX((vx) => Math.min(Math.max(vx - 1, -1), 1));
+          break;
+        case 'stop':
+          setVX(0);
+          setVY(0);
+          setVR(0);
+          break;
+        default:
+          break;
+      }
+    };
+  
+    annyang.addCallback('result', (phrases) => {
+      const string = phrases[0].toLowerCase(); // Get the first recognized phrase
+      let displayedCommand = '';
+  
+      for (const command of commands) {
+        if (string.includes(command)) {
+          executeCommand(command);
+          displayedCommand += `${command} `;
+        }
+      }
+  
+      setDisplayedText(displayedCommand.trim());
+    });
+  
+    // Start annyang
+    annyang.start();
+  
+    return () => {
+      // Clean up annyang when the component unmounts
+      annyang.abort();
+    };
+  }, []); // Empty dependency array ensures this effect runs only once
+    
+  
+  function handleButton() {
+    if (annyang.isListening()) {
+      annyang.abort();
       setButtonName("Start Listening");
-      setButtonColor("green");
-    }else{
-      listen();
+    } else {
+      annyang.start();
       setButtonName("Stop Listening");
-      setButtonColor("red");
     }
   }
 
@@ -58,12 +87,12 @@ export default function Voice() {
       </Flex>
       <Spacer h="15px" />
       <Flex justifyContent="center">
-        <Button onClick={handleButton} colorScheme={buttonColor} disabled={listening}>
+        <Button onClick={handleButton} colorScheme={annyang.isListening() ? "red" : "green"}>
           {buttonName}
         </Button>
       </Flex>
       <Flex justifyContent="center">
-        <Text >
+        <Text>
           Heard: {displayedText}
         </Text>
       </Flex>
