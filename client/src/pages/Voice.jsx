@@ -11,7 +11,8 @@ export default function Voice() {
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
-    const commands = ['turn left', 'turn right', 'forward', 'backward', 'left', 'right', 'stop'];
+    const originalCommands = ['turn left', 'turn right', 'forward', 'backward', 'left', 'right', 'stop'];
+    let commands = [...originalCommands]; // Make a copy to avoid modifying the original array
   
     const executeCommand = (command) => {
       switch (command) {
@@ -44,13 +45,15 @@ export default function Voice() {
     };
   
     annyang.addCallback('result', (phrases) => {
-      const string = phrases[0].toLowerCase(); // Get the first recognized phrase
+      let string = phrases[0].toLowerCase();
       let displayedCommand = '';
   
       for (const command of commands) {
         if (string.includes(command)) {
           executeCommand(command);
           displayedCommand += `${command} `;
+          // Remove the processed command from the string
+          string = string.replace(command, '').trim();
         }
       }
   
@@ -65,6 +68,7 @@ export default function Voice() {
       annyang.abort();
     };
   }, []); // Empty dependency array ensures this effect runs only once
+      
     
   
   function handleButton() {
