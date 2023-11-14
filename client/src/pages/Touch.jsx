@@ -41,17 +41,11 @@ export default function Touch() {
     <Box bg="black" h="100vh">
       <Spacer h="15px"/>
       
-      <Flex>
-        <Spacer />
-        <CombinedControl vx={vx} vy={vy} vr={vr} />
-        <Spacer />
-      </Flex>
-    
-      <Spacer h="10px" />
-
-      <Flex>
+      <Flex alignItems={"center"}>
         <Spacer />
         <Joystick move={handleLeftMove} stop={handleLeftStop}/>
+        <Spacer />
+        <CombinedControl vx={vx} vy={vy} vr={vr} />
         <Spacer />
         <Joystick move={handleRightMove} stop={handleRightStop}/>
         <Spacer />
