@@ -98,20 +98,15 @@ export default function Simulator({ vx, vy, vr}) {
 
   return (
     <Box id="simulator" bg="brand.900" p={4} borderRadius='lg'>
-      <Flex p={2} alignItems='center'>
+      <Flex p={2} alignItems='center' >
         <Heading color="white" size='xl' textAlign={"center"} >Simulator</Heading>
         <Spacer />
-        <Settings numbers={settings} onNumberChange={handleSettingsChange} />
+        <Settings numbers={settings} onNumberChange={handleSettingsChange} isChecked={isChecked} toggleSwitch={toggleSwitch}/>
       </Flex>
       
       <Box w="640px" h="480px" bg="black" borderRadius='lg'>
         <Avatar name='Omni Pi' style={avatarStyles} />
       </Box>
-
-      <Flex p={2} alignItems='center' >
-        <Switch size="lg" onChange={toggleSwitch} isChecked={isChecked} pr={6} />
-        <Heading color="white" size='lg' textAlign={"center"} >Field Oriented</Heading>
-      </Flex>
     </Box>
   );
 }

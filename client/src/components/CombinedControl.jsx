@@ -19,7 +19,7 @@ export default function CombinedControl({vx, vy, vr}) {
     };
 
     return (
-        <Box>
+        <Box bg="brand.900" p={4} borderRadius='lg'>
             {isChecked ? <OmniPi vx={vx} vy={vy} vr={vr}/> : <Simulator vx={vx} vy={vy} vr={vr} />}
             <Flex p={2} alignItems='center' >
                 <Switch size="lg" onChange={toggleSwitch} isChecked={isChecked} pr={6} />

@@ -1,5 +1,5 @@
 import { Box, Flex, Spacer, Button, Text } from '@chakra-ui/react';
-import Simulator from '../components/Simulator';
+import CombinedControl from '../components/CombinedControl';
 import { useState, useEffect } from 'react';
 import annyang from 'annyang';
 
@@ -86,7 +86,7 @@ export default function Voice() {
       <Spacer h="15px" />
       <Flex>
         <Spacer />
-        <Simulator vx={vx} vy={vy} vr={vr} max_speed={10} />
+        <CombinedControl vx={vx} vy={vy} vr={vr} max_speed={10} />
         <Spacer />
       </Flex>
       <Spacer h="15px" />

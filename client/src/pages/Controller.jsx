@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Simulator from '../components/Simulator';
 import { Box, Flex, Spacer } from '@chakra-ui/react';
+import CombinedControl from "../components/CombinedControl";
 
 export default function Controller() {
 
@@ -35,7 +35,7 @@ export default function Controller() {
       
       <Flex>
         <Spacer />
-        <Simulator vx={leftJoystickPosition.x} vy={-leftJoystickPosition.y} vr={rightJoystickPosition.x} />
+        <CombinedControl vx={leftJoystickPosition.x} vy={-leftJoystickPosition.y} vr={rightJoystickPosition.x} />
         <Spacer />
       </Flex>
     </Box>

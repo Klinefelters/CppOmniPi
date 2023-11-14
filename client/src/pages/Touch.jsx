@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Joystick } from 'react-joystick-component';
-import Simulator from '../components/Simulator';
 import { Box, Flex, Spacer } from '@chakra-ui/react'
+import CombinedControl from "../components/CombinedControl";
 
 export default function Touch() {
 
@@ -43,7 +43,7 @@ export default function Touch() {
       
       <Flex>
         <Spacer />
-        <Simulator vx={vx} vy={vy} vr={vr} />
+        <CombinedControl vx={vx} vy={vy} vr={vr} />
         <Spacer />
       </Flex>
     

@@ -1,6 +1,6 @@
 import  { useEffect } from 'react';
 import axios from 'axios';
-import { Box, Image } from '@chakra-ui/react';
+import { Box, Image, Flex, Heading } from '@chakra-ui/react';
 
 export default function OmniPi({vx, vy, vr}) {
 
@@ -34,8 +34,11 @@ export default function OmniPi({vx, vy, vr}) {
   }, [vx, vy, vr]);
 
   return (
-    <Box bg="black" p={4}>
-      <Image id="videoFeed" src={videoUrl} alt="video_feed" width="480" height="320" />
+    <Box bg="brand.900" p={4} borderRadius='lg'>
+      <Flex p={2} alignItems='center'>
+        <Heading color="white" size='xl' textAlign={"center"} >OmniPi</Heading>
+      </Flex>
+      <Image id="videoFeed" src={videoUrl} alt="video_feed"  w="640px" h="480px" />
     </Box>
   );
 }

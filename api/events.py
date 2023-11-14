@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
-from mockCamera import Camera
+from camera import Camera
 from mockRobot import Robot
 
 events_bp = Blueprint('events', __name__)

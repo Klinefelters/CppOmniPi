@@ -17,10 +17,11 @@ import {
   SliderTrack,
   SliderFilledTrack,
   Heading,
-  Flex
+  Flex,
+  Switch
 } from '@chakra-ui/react'
 
-export default function ({ numbers, onNumberChange }) {
+export default function ({ numbers, onNumberChange, isChecked, toggleSwitch }) {
   const handleSliderChange = (key, value) => {
     onNumberChange(key, value);
   };
@@ -54,6 +55,10 @@ export default function ({ numbers, onNumberChange }) {
                   </Slider>
                 </Box>
               ))}
+              <Flex p={2} alignItems='center' >
+                <Switch size="lg" onChange={toggleSwitch} isChecked={isChecked} pr={6} />
+                <Heading color="black" size='md' textAlign={"center"} >Field Oriented</Heading>
+              </Flex>
             </VStack>
           </ModalBody>
 
