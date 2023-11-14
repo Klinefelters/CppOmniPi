@@ -2,7 +2,7 @@ import  { useEffect } from 'react';
 import axios from 'axios';
 import { Box, Image } from '@chakra-ui/react';
 
-export default function OmniPi(vx, vy, vr) {
+export default function OmniPi({vx, vy, vr}) {
 
   const videoUrl = 'http://localhost:8000/video_feed';
 

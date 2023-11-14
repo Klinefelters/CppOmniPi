@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Simulator from '../components/Simulator';
 import { Box, Flex, Spacer } from '@chakra-ui/react'
+import CombinedControl from "../components/CombinedControl";
 
 export default function Keyboard() {
 
@@ -46,7 +46,7 @@ export default function Keyboard() {
       <Spacer h="15px"/>
       <Flex>
         <Spacer />
-        <Simulator vx={vx} vy={vy} vr={vr} max_speed={10} />
+        <CombinedControl vx={vx} vy={vy} vr={vr}/>
         <Spacer />
       </Flex>
       

@@ -43,7 +43,7 @@ export default function Touch() {
       
       <Flex>
         <Spacer />
-        <Simulator vx={vx} vy={vy} vr={vr} max_speed={10} />
+        <Simulator vx={vx} vy={vy} vr={vr} />
         <Spacer />
       </Flex>
     
