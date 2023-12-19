@@ -1,5 +1,5 @@
 # OmniPi
-A project that uses UDP communication to wirelessly control a raspberry pi with mecanum wheels for omnidirectional movement.
+A project that uses a local webserver to control a raspberry pi with mecanum wheels for omnidirectional movement.
 Also has a camera streaming option for those with compatible hardware.
 ## Set Up
 In order to set this up, two devices are needed. A raspberry pi car, and a laptop, jetson, or other coprocessor connected to the pi's wifi network.
